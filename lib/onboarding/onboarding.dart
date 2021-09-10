@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping/login.dart';
+import 'package:shopping/login/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingModel {

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shopping/onboarding.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping/network/remote/dio_helper.dart';
+import 'package:shopping/onboarding/onboarding.dart';
+import 'blocobserver/block_observer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  DioHelper.dioInit();
   runApp(MyApp());
 }
 
