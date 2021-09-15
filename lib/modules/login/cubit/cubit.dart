@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping/login/cubit/state.dart';
+
 import 'package:shopping/models/login_model/login_model.dart';
+import 'package:shopping/modules/login/cubit/states.dart';
 import 'package:shopping/network/end_Point/endpoint.dart';
 import 'package:shopping/network/remote/dio_helper.dart';
 
@@ -21,10 +22,11 @@ class LoginCubit extends Cubit<LoginStates> {
       "email": email,
       "password": password,
     }).then((value) {
-      print("the value $value");
+      // print("the value $value");
       loginModel = LoginModel.fromMap(value.data);
-      print(loginModel!.status);
-      emit(ShopLoginSuccessState());
+      // print(loginModel!.message);
+      // print(loginModel!.data!.token);
+      emit(ShopLoginSuccessState(loginModel!));
     }).catchError((onError) {
       print("ُErrors $onError");
       emit(ShopLoginErrorState(onError.toString()));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping/login/login_screen.dart';
+import 'package:shopping/modules/login/login_screen.dart';
+import 'package:shopping/network/local/cach_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingModel {
@@ -14,12 +15,12 @@ class OnBoardingModel {
   });
 }
 
-class OnBoarding extends StatefulWidget {
+class OnBoardingScreen extends StatefulWidget {
   @override
   _OnBoardingState createState() => _OnBoardingState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBoardingState extends State<OnBoardingScreen> {
   ///
   var boardingController = PageController();
 
@@ -34,6 +35,15 @@ class _OnBoardingState extends State<OnBoarding> {
 
   bool islast = false;
 
+  void lastSkip() {
+    CacheHelper.saveData(key: "onboarding", value: true).then((value) {
+      if (value == true) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +56,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   borderRadius: BorderRadius.circular(30.0),
                 ))),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                  lastSkip();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -126,10 +135,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     ///controller هتحكم في ال بيح فيو  من خلال البوتون فهستخدم
                     onPressed: () {
                       if (islast) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                        lastSkip();
                       }
                       boardingController.nextPage(
                         duration: Duration(milliseconds: 300),

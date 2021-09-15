@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class LoginModel {
   bool? status;
   String? message;
@@ -33,9 +31,8 @@ class UserData {
     this.token,
   });
 
-  
-
   /// named constructor
+  /// fromMap == fromjason
   factory UserData.fromMap(Map<String, dynamic> map) {
     return UserData(
       id: map['id'],
@@ -48,5 +45,4 @@ class UserData {
       token: map['token'],
     );
   }
-
 }

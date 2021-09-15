@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
-
+class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          // backgroundColor: Colors.blue,
+
+          ),
     );
   }
 }
